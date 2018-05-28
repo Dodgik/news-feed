@@ -22,7 +22,6 @@ export namespace Filters {
 export class Filters extends React.Component<Filters.Props, Filters.State> {
   constructor(props: Filters.Props) {
     super(props);
-    console.warn('->Filters->constructor');
     this.state = {
       country: this.props.country,
       category: this.props.category,
@@ -30,7 +29,6 @@ export class Filters extends React.Component<Filters.Props, Filters.State> {
   }
   
   componentWillReceiveProps(nextProps: any) {
-    console.warn('->Filters->componentWillReceiveProps=', nextProps.country);
     if (nextProps.country !== this.state.country || nextProps.category !== this.state.category) {
       this.setState({ country: nextProps.country, category: nextProps.category });
     }
@@ -47,7 +45,6 @@ export class Filters extends React.Component<Filters.Props, Filters.State> {
   handleClick = () => {
     const { country, category } = this.state;
     const newPath = `/news/${country}/${category}`;
-    console.warn('->Filters->this.props.history.location.pathname=', this.props.history.location.pathname);
     if (newPath !== this.props.history.location.pathname) {
       this.props.history.push(newPath);
     } else {
@@ -58,7 +55,6 @@ export class Filters extends React.Component<Filters.Props, Filters.State> {
   render() {
     const { countries, categories } = this.props;
     const { country, category } = this.state;
-    console.warn('->Filters->render = ', country, category);
     return (
       <div className={style.normal}>
         <Filter title="Filter by country"

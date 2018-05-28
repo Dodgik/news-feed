@@ -1,14 +1,12 @@
-//import fetch from 'isomorphic-fetch';
+import * as fetch from 'isomorphic-fetch';
 import { stringify } from 'query-string';
-
 
 const getProps = {
   method: 'GET',
 };
 
 
-const fetchWrap = (path: any, props = getProps, query = '', apiParams: any) => {
-  //const { apiHost, developer } = apiParams;
+const fetchWrap = (path: any, props = getProps, query = '') => {
   const apiKey = '7d090866a4894c7d98ae9765422ec62e';
   const apiHost = 'https://newsapi.org/v2/top-headlines';
   
@@ -31,12 +29,11 @@ const fetchWrap = (path: any, props = getProps, query = '', apiParams: any) => {
     });
 }
 
-const fetchGET = (path: any, data: any, apiParams: any) => {
+const fetchGET = (path: any, data: any) => {
   const query = stringify(data);
-  return fetchWrap(path, getProps, query, apiParams);
+  return fetchWrap(path, getProps, query);
 }
 
-export const all = (data: any, apiParams: any) => {
-  return fetchGET('/', data, apiParams);
+export const all = (data: any) => {
+  return fetchGET('/', data);
 }
-

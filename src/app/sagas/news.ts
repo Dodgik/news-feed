@@ -3,17 +3,11 @@ import { NewsActions } from 'app/actions/news';
 
 import api from '../api'
 
-/*
-export function* apiNews(method: any, data: any) {
-  const apiParams = yield select(state => state.api)
-  return yield call(api.news[method], data, apiParams)
-}
-*/
+
 export function* fetchNews(data: any) {
   yield put(NewsActions.requestNews())
   try {
-    let apiParams = null;
-    const { response, error } = yield call(api.news.all, data.payload, apiParams)
+    const { response, error } = yield call(api.news.all, data.payload)
     if (response) {
       yield put(NewsActions.receiveNews(response))
     } else {
