@@ -71,7 +71,9 @@ export class Filters extends React.Component<Filters.Props, Filters.State> {
           value={category}
           onChange={this.handleChangeCategory}
           />
-        <Button variant="raised" onClick={this.handleClick}>Get List</Button>
+        <div className={style.center}>
+          <Button variant="raised" onClick={this.handleClick}>Get List</Button>
+        </div>
       </div>
     );
   }

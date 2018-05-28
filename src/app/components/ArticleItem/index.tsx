@@ -3,6 +3,9 @@ import * as style from './style.css';
 import { ArticleModel } from 'app/models';
 import { Link } from 'react-router-dom';
 
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 export namespace ArticleItem {
   export interface Props {
     article: ArticleModel;
@@ -17,11 +20,11 @@ export class ArticleItem extends React.Component<ArticleItem.Props> {
     const { article, id, country, category } = this.props;
     
     return (
-      <li>
+      <ListItem className={style.item}>
         <span>{id}. </span>
-        <span className={style.label}>{article.title}</span>
+        <ListItemText  className={style.label} primary={article.title} />
         <Link to={`/news/${country}/${category}/article/${id}`} className={style.link}>read more</Link>
-      </li>
+      </ListItem>
     );
   }
 }

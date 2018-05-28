@@ -1,4 +1,16 @@
+li.item {
+  position: relative;
+  font-size: 14px;
+  border-bottom: 1px solid #ededed;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+  li.item:last-child {
+    border-bottom: none;
+  }
 
 .link {
-  margin-left: 10px;
+  margin-left: 6px;
+  min-width: 70px
 }

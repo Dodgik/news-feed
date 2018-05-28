@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Header renders 1`] = `
+<header>
+  <h2>
+    Top news of 
+    Monday 05/28/2018
+  </h2>
+</header>
+`;

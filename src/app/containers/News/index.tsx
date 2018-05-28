@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps, match } from 'react-router';
 import { bindActionCreators, Dispatch } from 'redux';
+import * as style from './style.css';
 import { RootState } from 'app/reducers';
 import { ArticleModel } from 'app/models';
 import { ArticlesList } from 'app/components';
@@ -20,15 +21,19 @@ export namespace News {
     country: string;
     category: string;
     fetchNews: any;
+    isFetching: boolean;
+    error: string;
   }
 }
 
 @connect(
-  (state: RootState): Pick<News.Props, 'articles' | 'country' | 'category'> => {
+  (state: RootState): Pick<News.Props, 'articles' | 'country' | 'category' | 'category' | 'isFetching' | 'error'> => {
     return {
       articles: state.news.articles,
       country: state.news.country,
       category: state.news.category,
+      isFetching: state.news.isFetching,
+      error: state.news.error,
     };
   },
   (dispatch: Dispatch): Pick<News.Props, 'fetchNews'> => ({
@@ -53,8 +58,14 @@ export class News extends React.Component<News.Props> {
   }
 
   render() {
-    const { articles, country, category } = this.props;
+    const { articles, country, category, isFetching, error } = this.props;
 
-    return (<ArticlesList articles={articles} country={country} category={category} />);
+    if (isFetching) {
+      return <div className={style.loader}>Loading</div>
+    } else if (error) {
+      return <div className={style.error}>{error}</div>
+    } else {
+      return <ArticlesList articles={articles} country={country} category={category} />;
+    }
   }
 }

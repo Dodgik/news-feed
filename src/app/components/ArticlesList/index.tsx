@@ -3,6 +3,8 @@ import * as style from './style.css';
 import { ArticleItem } from '../ArticleItem';
 import { ArticleModel } from 'app/models/ArticleModel';
 
+import List from '@material-ui/core/List';
+
 export namespace ArticlesList {
   export interface Props {
     articles: ArticleModel[];
@@ -17,11 +19,11 @@ export class ArticlesList extends React.Component<ArticlesList.Props> {
     return (
       <section className={style.main}>
         {country && (<h2 className={style.center}>News from {country.toUpperCase()} and {category.toUpperCase()} category</h2>)}
-        <ol className={style.normal}>
+        <List className={style.normal}>
           {articles.map((article: ArticleModel, i: number) => (
             <ArticleItem key={i} article={article} id={i + 1} country={country} category={category} />
           ))}
-        </ol>
+        </List>
       </section>
     );
   }
